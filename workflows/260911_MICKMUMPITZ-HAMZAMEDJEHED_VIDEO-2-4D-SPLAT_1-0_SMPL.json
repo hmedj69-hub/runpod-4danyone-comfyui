@@ -1,0 +1,983 @@
+{
+  "id": "48d3f6ed-0216-4f06-882c-1accc00b7d3f",
+  "revision": 0,
+  "last_node_id": 39,
+  "last_link_id": 38,
+  "nodes": [
+    {
+      "id": 35,
+      "type": "SplatKit_PerceptualModelLoader",
+      "pos": [
+        640,
+        1040
+      ],
+      "size": [
+        460,
+        60
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "perceptual_model",
+          "type": "SPLATKIT_PERCEPTUAL_MODEL",
+          "links": [
+            34
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-splatkit",
+        "ver": "47c93ee95c345314b0b3b0a998a80788fc984207",
+        "Node name for S&R": "SplatKit_PerceptualModelLoader",
+        "aux_id": "mickmumpitz/ComfyUI-SplatKit"
+      },
+      "widgets_values": [
+        "imagenet-vgg-verydeep-19-conv.safetensors"
+      ],
+      "widgets_values_named": {
+        "model_name": "imagenet-vgg-verydeep-19-conv.safetensors"
+      }
+    },
+    {
+      "id": 26,
+      "type": "SplatKit_4DAnyoneExportFrameset",
+      "pos": [
+        2090,
+        40
+      ],
+      "size": [
+        420,
+        338
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "views",
+          "type": "SPLATKIT_4DANYONE_VIEWS",
+          "link": 24
+        }
+      ],
+      "outputs": [
+        {
+          "name": "frameset",
+          "type": "SPLATKIT_FRAMESET",
+          "links": [
+            26
+          ]
+        },
+        {
+          "name": "frames",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-splatkit",
+        "ver": "428cab3d61795447c1241ca59e94b63313349c56",
+        "Node name for S&R": "SplatKit_4DAnyoneExportFrameset",
+        "aux_id": "mickmumpitz/ComfyUI-SplatKit"
+      },
+      "widgets_values": [
+        0,
+        120,
+        8
+      ],
+      "widgets_values_named": {
+        "first_frame": 0,
+        "last_frame": 120,
+        "matting_batch": 8
+      }
+    },
+    {
+      "id": 20,
+      "type": "CreateVideo",
+      "pos": [
+        3180,
+        40
+      ],
+      "size": [
+        380,
+        150
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 30
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "slot_index": 0,
+          "links": [
+            14
+          ]
+        }
+      ],
+      "title": "Create Video (turnaround)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.35.0",
+        "Node name for S&R": "CreateVideo"
+      },
+      "widgets_values": [
+        24,
+        "auto",
+        "sRGB",
+        "none"
+      ],
+      "widgets_values_named": {
+        "fps": 24,
+        "bit_depth": "auto",
+        "color_space": "sRGB",
+        "codec": "none"
+      }
+    },
+    {
+      "id": 33,
+      "type": "MarkdownNote",
+      "pos": [
+        -1110,
+        -10
+      ],
+      "size": [
+        1186.746835517247,
+        448.1188421973568
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Model Download Links",
+      "properties": {},
+      "widgets_values": [
+        "## Important!\n### You need to update the Mickmumpitznodes at least to version 1.5.6!\n\n---\n\n## Required Models\n\n| Model file | 📁 Model folder under *ComfyUI/models* | Download Link |\n|------|--------|---------|\n| **model.safetensors** (4DAnyone) | /splatkit/4danyone | [https://huggingface.co/AntResearch/4DAnyone/blob/main/4danyone/model.safetensors](https://huggingface.co/AntResearch/4DAnyone/blob/main/4danyone/model.safetensors) |\n| **Wan2.2_VAE.pth** | /splatkit/4danyone | [https://huggingface.co/AntResearch/4DAnyone/blob/main/4danyone/Wan2.2_VAE.pth](https://huggingface.co/AntResearch/4DAnyone/blob/main/4danyone/Wan2.2_VAE.pth) |\n| **prompt_context.safetensors** | /splatkit/4danyone | [https://huggingface.co/AntResearch/4DAnyone/blob/main/4danyone/prompt_context.safetensors](https://huggingface.co/AntResearch/4DAnyone/blob/main/4danyone/prompt_context.safetensors) |\n| **Wan22_TI2V_5B_Turbo_lora_rank_64_fp16.safetensors** (only with Turbo enabled) | /splatkit/4danyone | [https://huggingface.co/AntResearch/4DAnyone/blob/main/4danyone/Wan22_TI2V_5B_Turbo_lora_rank_64_fp16.safetensors](https://huggingface.co/AntResearch/4DAnyone/blob/main/4danyone/Wan22_TI2V_5B_Turbo_lora_rank_64_fp16.safetensors) |\n| **imagenet-vgg-verydeep-19-conv.safetensors** (VGG-19 perceptual, only for Train Sequence) | /splatkit/4danyone | [https://huggingface.co/AntResearch/4DAnyone/resolve/main/perceptual/imagenet-vgg-verydeep-19-conv.safetensors](https://huggingface.co/AntResearch/4DAnyone/resolve/main/perceptual/imagenet-vgg-verydeep-19-conv.safetensors) |\n| **model.safetensors** (BiRefNet) | /splatkit/birefnet | [https://huggingface.co/ZhengPeng7/BiRefNet/blob/main/model.safetensors](https://huggingface.co/ZhengPeng7/BiRefNet/blob/main/model.safetensors) |\n| **config.json** (BiRefNet — must sit alongside model) | /splatkit/birefnet | [https://huggingface.co/ZhengPeng7/BiRefNet/blob/main/config.json](https://huggingface.co/ZhengPeng7/BiRefNet/blob/main/config.json) |\n| **birefnet.py** (BiRefNet — must sit alongside model) | /splatkit/birefnet | [https://huggingface.co/ZhengPeng7/BiRefNet/blob/main/birefnet.py](https://huggingface.co/ZhengPeng7/BiRefNet/blob/main/birefnet.py) |\n| **BiRefNet_config.py** (BiRefNet — must sit alongside model) | /splatkit/birefnet | [https://huggingface.co/ZhengPeng7/BiRefNet/blob/main/BiRefNet_config.py](https://huggingface.co/ZhengPeng7/BiRefNet/blob/main/BiRefNet_config.py) |\n| **sam_3d_body_dinov3_bf16.safetensors** (SAM 3D Body) | /detection | [https://huggingface.co/Comfy-Org/sam-3d-body/resolve/main/detection/sam_3d_body_dinov3_bf16.safetensors](https://huggingface.co/Comfy-Org/sam-3d-body/resolve/main/detection/sam_3d_body_dinov3_bf16.safetensors) |\n"
+      ],
+      "widgets_values_named": {
+        "text": "## Important!\n### You need to update the Mickmumpitznodes at least to version 1.5.6!\n\n---\n\n## Required Models\n\n| Model file | 📁 Model folder under *ComfyUI/models* | Download Link |\n|------|--------|---------|\n| **model.safetensors** (4DAnyone) | /splatkit/4danyone | [https://huggingface.co/AntResearch/4DAnyone/blob/main/4danyone/model.safetensors](https://huggingface.co/AntResearch/4DAnyone/blob/main/4danyone/model.safetensors) |\n| **Wan2.2_VAE.pth** | /splatkit/4danyone | [https://huggingface.co/AntResearch/4DAnyone/blob/main/4danyone/Wan2.2_VAE.pth](https://huggingface.co/AntResearch/4DAnyone/blob/main/4danyone/Wan2.2_VAE.pth) |\n| **prompt_context.safetensors** | /splatkit/4danyone | [https://huggingface.co/AntResearch/4DAnyone/blob/main/4danyone/prompt_context.safetensors](https://huggingface.co/AntResearch/4DAnyone/blob/main/4danyone/prompt_context.safetensors) |\n| **Wan22_TI2V_5B_Turbo_lora_rank_64_fp16.safetensors** (only with Turbo enabled) | /splatkit/4danyone | [https://huggingface.co/AntResearch/4DAnyone/blob/main/4danyone/Wan22_TI2V_5B_Turbo_lora_rank_64_fp16.safetensors](https://huggingface.co/AntResearch/4DAnyone/blob/main/4danyone/Wan22_TI2V_5B_Turbo_lora_rank_64_fp16.safetensors) |\n| **imagenet-vgg-verydeep-19-conv.safetensors** (VGG-19 perceptual, only for Train Sequence) | /splatkit/4danyone | [https://huggingface.co/AntResearch/4DAnyone/resolve/main/perceptual/imagenet-vgg-verydeep-19-conv.safetensors](https://huggingface.co/AntResearch/4DAnyone/resolve/main/perceptual/imagenet-vgg-verydeep-19-conv.safetensors) |\n| **model.safetensors** (BiRefNet) | /splatkit/birefnet | [https://huggingface.co/ZhengPeng7/BiRefNet/blob/main/model.safetensors](https://huggingface.co/ZhengPeng7/BiRefNet/blob/main/model.safetensors) |\n| **config.json** (BiRefNet — must sit alongside model) | /splatkit/birefnet | [https://huggingface.co/ZhengPeng7/BiRefNet/blob/main/config.json](https://huggingface.co/ZhengPeng7/BiRefNet/blob/main/config.json) |\n| **birefnet.py** (BiRefNet — must sit alongside model) | /splatkit/birefnet | [https://huggingface.co/ZhengPeng7/BiRefNet/blob/main/birefnet.py](https://huggingface.co/ZhengPeng7/BiRefNet/blob/main/birefnet.py) |\n| **BiRefNet_config.py** (BiRefNet — must sit alongside model) | /splatkit/birefnet | [https://huggingface.co/ZhengPeng7/BiRefNet/blob/main/BiRefNet_config.py](https://huggingface.co/ZhengPeng7/BiRefNet/blob/main/BiRefNet_config.py) |\n| **sam_3d_body_dinov3_bf16.safetensors** (SAM 3D Body) | /detection | [https://huggingface.co/Comfy-Org/sam-3d-body/resolve/main/detection/sam_3d_body_dinov3_bf16.safetensors](https://huggingface.co/Comfy-Org/sam-3d-body/resolve/main/detection/sam_3d_body_dinov3_bf16.safetensors) |\n"
+      },
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 4,
+      "type": "MarkdownNote",
+      "pos": [
+        120,
+        50
+      ],
+      "size": [
+        450,
+        420
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "How to use",
+      "properties": {
+        "Node name for S&R": "MarkdownNote"
+      },
+      "widgets_values": [
+        "## How to use\n\n- One person, roughly in place. Slow hands and close-fitting clothing work best.\n- Start with frames 0-20 and draft training, then increase the range and quality.\n- Generation still processes the selected clip; a shorter training range only shortens export/training.\n\n## Custom Nodes\n- Mickmumpitz Nodes\n- SplatKit - **Make sure to install v1.2.2!**\n\n\n---\n\n## IMPORTANT\n\n1.Download SplatKit-4D-Backend-Installer.zip from this link: [https://github.com/mickmumpitz/ComfyUI-SplatKit/releases/tag/4d-backend-installer-0.1.0](https://github.com/mickmumpitz/ComfyUI-SplatKit/releases/tag/4d-backend-installer-0.1.0)\n\n2.Extract it — you get installer.bat and install_splat_backend.py.\n\n3.Drop both files into your ComfyUI-SplatKit custom-node folder\n(ComfyUI/custom_nodes/ComfyUI-SplatKit/), or into the ComfyUI root.\n\n4.Run installer.bat. It builds a self-contained Python 3.11 / CUDA 12.8 environment under the pack's bin/ folder — downloading uv and a gsplat wheel, then installing the pinned dependencies. It touches nothing in ComfyUI's own Python.\n\n5.Restart ComfyUI. The Splat Backend Setup node should now report Ready."
+      ],
+      "widgets_values_named": {
+        "text": "## How to use\n\n- One person, roughly in place. Slow hands and close-fitting clothing work best.\n- Start with frames 0-20 and draft training, then increase the range and quality.\n- Generation still processes the selected clip; a shorter training range only shortens export/training.\n\n## Custom Nodes\n- Mickmumpitz Nodes\n- SplatKit - **Make sure to install v1.2.2!**\n\n\n---\n\n## IMPORTANT\n\n1.Download SplatKit-4D-Backend-Installer.zip from this link: [https://github.com/mickmumpitz/ComfyUI-SplatKit/releases/tag/4d-backend-installer-0.1.0](https://github.com/mickmumpitz/ComfyUI-SplatKit/releases/tag/4d-backend-installer-0.1.0)\n\n2.Extract it — you get installer.bat and install_splat_backend.py.\n\n3.Drop both files into your ComfyUI-SplatKit custom-node folder\n(ComfyUI/custom_nodes/ComfyUI-SplatKit/), or into the ComfyUI root.\n\n4.Run installer.bat. It builds a self-contained Python 3.11 / CUDA 12.8 environment under the pack's bin/ folder — downloading uv and a gsplat wheel, then installing the pinned dependencies. It touches nothing in ComfyUI's own Python.\n\n5.Restart ComfyUI. The Splat Backend Setup node should now report Ready."
+      },
+      "color": "#97651BFF",
+      "bgcolor": "#B67921FF"
+    },
+    {
+      "id": 5,
+      "type": "LoadVideo",
+      "pos": [
+        640,
+        40
+      ],
+      "size": [
+        360,
+        714
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "slot_index": 0,
+          "links": [
+            19
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.35.0",
+        "Node name for S&R": "LoadVideo"
+      },
+      "widgets_values": [
+        "4D.mp4",
+        "image"
+      ],
+      "widgets_values_named": {
+        "file": "4D.mp4",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 9,
+      "type": "SplatKit_4DAnyoneModelLoader",
+      "pos": [
+        640,
+        810
+      ],
+      "size": [
+        460,
+        180
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "models",
+          "type": "SPLATKIT_4DANYONE_MODELS",
+          "slot_index": 0,
+          "links": [
+            18
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-splatkit",
+        "ver": "428cab3d61795447c1241ca59e94b63313349c56",
+        "Node name for S&R": "SplatKit_4DAnyoneModelLoader",
+        "aux_id": "mickmumpitz/ComfyUI-SplatKit"
+      },
+      "widgets_values": [
+        "model.safetensors",
+        "Wan2.2_VAE.pth",
+        "prompt_context.safetensors",
+        "model.safetensors",
+        "sam_3d_body_dinov3_bf16.safetensors",
+        "Wan22_TI2V_5B_Turbo_lora_rank_64_fp16.safetensors"
+      ],
+      "widgets_values_named": {
+        "checkpoint": "model.safetensors",
+        "vae": "Wan2.2_VAE.pth",
+        "prompt_context": "prompt_context.safetensors",
+        "birefnet": "model.safetensors",
+        "sam3d_body": "sam_3d_body_dinov3_bf16.safetensors",
+        "turbo_lora": "Wan22_TI2V_5B_Turbo_lora_rank_64_fp16.safetensors"
+      },
+      "color": "#E0E0E0FF",
+      "bgcolor": "#FFFFFFFF"
+    },
+    {
+      "id": 21,
+      "type": "SaveVideo",
+      "pos": [
+        3181.7634410514256,
+        252.62365945137736
+      ],
+      "size": [
+        380,
+        106
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 14
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "title": "Save Video (turnaround, 3 deg/frame)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.35.0",
+        "Node name for S&R": "SaveVideo"
+      },
+      "widgets_values": [
+        "turnaround",
+        "auto",
+        "auto",
+        "auto"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "turnaround",
+        "format": "auto",
+        "format.codec": "auto",
+        "codec": "auto"
+      },
+      "color": "#A1A1A1FF",
+      "bgcolor": "#C0C0C0FF"
+    },
+    {
+      "id": 25,
+      "type": "SplatKit_4DAnyonePreviewGrid",
+      "pos": [
+        1650,
+        40
+      ],
+      "size": [
+        380,
+        110
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "views",
+          "type": "SPLATKIT_4DANYONE_VIEWS",
+          "link": 22
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            23
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-splatkit",
+        "ver": "428cab3d61795447c1241ca59e94b63313349c56",
+        "Node name for S&R": "SplatKit_4DAnyonePreviewGrid",
+        "aux_id": "mickmumpitz/ComfyUI-SplatKit"
+      },
+      "widgets_values": [
+        200,
+        true,
+        true
+      ],
+      "widgets_values_named": {
+        "tile_width": 200,
+        "include_input": true,
+        "show_labels": true
+      }
+    },
+    {
+      "id": 13,
+      "type": "SaveVideo",
+      "pos": [
+        1650,
+        456.800788954635
+      ],
+      "size": [
+        380,
+        106
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "title": "Save Video (all views, contact sheet)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.35.0",
+        "Node name for S&R": "SaveVideo"
+      },
+      "widgets_values": [
+        "views_grid",
+        "auto",
+        "auto",
+        "auto"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "views_grid",
+        "format": "auto",
+        "format.codec": "auto",
+        "codec": "auto"
+      },
+      "color": "#A1A1A1FF",
+      "bgcolor": "#C0C0C0FF"
+    },
+    {
+      "id": 12,
+      "type": "CreateVideo",
+      "pos": [
+        1650,
+        220
+      ],
+      "size": [
+        380,
+        150
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 23
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "slot_index": 0,
+          "links": [
+            7
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.35.0",
+        "Node name for S&R": "CreateVideo"
+      },
+      "widgets_values": [
+        24,
+        "auto",
+        "sRGB",
+        "none"
+      ],
+      "widgets_values_named": {
+        "fps": 24,
+        "bit_depth": "auto",
+        "color_space": "sRGB",
+        "codec": "none"
+      }
+    },
+    {
+      "id": 24,
+      "type": "SplatKit_4DAnyoneGenerateViews",
+      "pos": [
+        1170,
+        40
+      ],
+      "size": [
+        457.5224106726249,
+        674
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "models",
+          "type": "SPLATKIT_4DANYONE_MODELS",
+          "link": 18
+        },
+        {
+          "name": "video",
+          "shape": 7,
+          "type": "VIDEO",
+          "link": 19
+        }
+      ],
+      "outputs": [
+        {
+          "name": "views",
+          "type": "SPLATKIT_4DANYONE_VIEWS",
+          "links": [
+            22,
+            24
+          ]
+        },
+        {
+          "name": "result_dir",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-splatkit",
+        "ver": "428cab3d61795447c1241ca59e94b63313349c56",
+        "Node name for S&R": "SplatKit_4DAnyoneGenerateViews",
+        "aux_id": "mickmumpitz/ComfyUI-SplatKit"
+      },
+      "widgets_values": [
+        "16 views, 1 ring - quick test",
+        42,
+        "fixed",
+        true,
+        "",
+        "sage",
+        true,
+        16,
+        "15,35",
+        0,
+        360,
+        0,
+        "auto",
+        121,
+        "auto",
+        true,
+        true
+      ],
+      "widgets_values_named": {
+        "camera_preset": "16 views, 1 ring - quick test",
+        "seed": 42,
+        "control_after_generate": "fixed",
+        "turbo": true,
+        "video_path": "",
+        "attention": "sage",
+        "low_vram": true,
+        "views_per_ring": 16,
+        "ring_pitches": "15,35",
+        "start_yaw": 0,
+        "yaw_span": 360,
+        "start_time": 0,
+        "target_fps": "auto",
+        "num_frames": 121,
+        "views_per_group": "auto",
+        "enable_rcp": true,
+        "enable_tcr": true
+      }
+    },
+    {
+      "id": 38,
+      "type": "SplatKit_SequencePlayer",
+      "pos": [
+        2584.6608186219373,
+        75.73312183154809
+      ],
+      "size": [
+        570,
+        560
+      ],
+      "flags": {
+        "pinned": true
+      },
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "sequence",
+          "type": "SPLATKIT_SEQUENCE",
+          "link": 37
+        }
+      ],
+      "outputs": [],
+      "title": "Sequence Player (drag to orbit, space to play)",
+      "properties": {
+        "cnr_id": "comfyui-splatkit",
+        "ver": "428cab3d61795447c1241ca59e94b63313349c56",
+        "Node name for S&R": "SplatKit_SequencePlayer",
+        "aux_id": "mickmumpitz/ComfyUI-SplatKit"
+      }
+    },
+    {
+      "id": 27,
+      "type": "SplatKit_TrainSequence",
+      "pos": [
+        2091.7634410514256,
+        447.6344105142577
+      ],
+      "size": [
+        420,
+        386
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "frameset",
+          "type": "SPLATKIT_FRAMESET",
+          "link": 26
+        },
+        {
+          "name": "perceptual_model",
+          "type": "SPLATKIT_PERCEPTUAL_MODEL",
+          "link": 34
+        }
+      ],
+      "outputs": [
+        {
+          "name": "sequence",
+          "type": "SPLATKIT_SEQUENCE",
+          "links": [
+            37,
+            38
+          ]
+        },
+        {
+          "name": "turnaround",
+          "type": "IMAGE",
+          "links": [
+            30
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-splatkit",
+        "ver": "428cab3d61795447c1241ca59e94b63313349c56",
+        "Node name for S&R": "SplatKit_TrainSequence",
+        "aux_id": "mickmumpitz/ComfyUI-SplatKit"
+      },
+      "widgets_values": [
+        "standard",
+        "my_shot",
+        false,
+        true,
+        true
+      ],
+      "widgets_values_named": {
+        "quality": "standard",
+        "name": "my_shot",
+        "retrain": false,
+        "clean": true,
+        "motion": true
+      }
+    },
+    {
+      "id": 39,
+      "type": "SplatKit_ExportPlySequence",
+      "pos": [
+        2615.1392208805223,
+        818.4148084182403
+      ],
+      "size": [
+        270,
+        194
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "sequence",
+          "type": "SPLATKIT_SEQUENCE",
+          "link": 38
+        }
+      ],
+      "outputs": [
+        {
+          "name": "archive_path",
+          "type": "STRING",
+          "links": null
+        },
+        {
+          "name": "frame_count",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "report",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SplatKit_ExportPlySequence"
+      },
+      "widgets_values": [
+        "splatkit_ply",
+        "zip_store",
+        1,
+        true,
+        false
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "splatkit_ply",
+        "mode": "zip_store",
+        "frame_step": 1,
+        "include_meta": true,
+        "overwrite": false
+      }
+    },
+    {
+      "id": 31,
+      "type": "MickmumpitzLabel",
+      "pos": [
+        90,
+        -210
+      ],
+      "size": [
+        674.783203125,
+        97.6
+      ],
+      "flags": {
+        "allow_interaction": true
+      },
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "MickmumpitzLabel",
+      "properties": {
+        "text": "VIDEO TO 4D SPLAT",
+        "fontSize": 68,
+        "fontFamily": "Arial",
+        "fontColor": "#ffffff",
+        "textAlign": "left",
+        "backgroundColor": "transparent",
+        "padding": 8,
+        "borderRadius": 0,
+        "Node name for S&R": "MickmumpitzLabel",
+        "cnr_id": "comfyui-mickmumpitz-nodes"
+      },
+      "color": "#fff0",
+      "bgcolor": "#fff0"
+    },
+    {
+      "id": 32,
+      "type": "MickmumpitzLabel",
+      "pos": [
+        100,
+        -130
+      ],
+      "size": [
+        223.99609375,
+        44.8
+      ],
+      "flags": {
+        "allow_interaction": true
+      },
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "MickmumpitzLabel",
+      "properties": {
+        "text": "BY MICKMUMPITZ",
+        "fontSize": 24,
+        "fontFamily": "Arial",
+        "fontColor": "#ffc14b",
+        "textAlign": "left",
+        "backgroundColor": "transparent",
+        "padding": 8,
+        "borderRadius": 0,
+        "Node name for S&R": "MickmumpitzLabel",
+        "cnr_id": "comfyui-mickmumpitz-nodes"
+      },
+      "color": "#fff0",
+      "bgcolor": "#fff0"
+    }
+  ],
+  "links": [
+    [
+      7,
+      12,
+      0,
+      13,
+      0,
+      "VIDEO"
+    ],
+    [
+      14,
+      20,
+      0,
+      21,
+      0,
+      "VIDEO"
+    ],
+    [
+      18,
+      9,
+      0,
+      24,
+      0,
+      "SPLATKIT_4DANYONE_MODELS"
+    ],
+    [
+      19,
+      5,
+      0,
+      24,
+      1,
+      "VIDEO"
+    ],
+    [
+      22,
+      24,
+      0,
+      25,
+      0,
+      "SPLATKIT_4DANYONE_VIEWS"
+    ],
+    [
+      23,
+      25,
+      0,
+      12,
+      0,
+      "IMAGE"
+    ],
+    [
+      24,
+      24,
+      0,
+      26,
+      0,
+      "SPLATKIT_4DANYONE_VIEWS"
+    ],
+    [
+      26,
+      26,
+      0,
+      27,
+      0,
+      "SPLATKIT_FRAMESET"
+    ],
+    [
+      30,
+      27,
+      1,
+      20,
+      0,
+      "IMAGE"
+    ],
+    [
+      34,
+      35,
+      0,
+      27,
+      1,
+      "SPLATKIT_PERCEPTUAL_MODEL"
+    ],
+    [
+      37,
+      27,
+      0,
+      38,
+      0,
+      "SPLATKIT_SEQUENCE"
+    ],
+    [
+      38,
+      27,
+      0,
+      39,
+      0,
+      "SPLATKIT_SEQUENCE"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1023,
+      "title": "1 SETUP - INSTALL ONCE",
+      "bounding": [
+        100,
+        -40,
+        490,
+        540
+      ],
+      "color": "#3F9E5BFF",
+      "flags": {}
+    },
+    {
+      "id": 1023,
+      "title": "2 INPUT VIDEO + MODELS",
+      "bounding": [
+        610,
+        -40,
+        520,
+        1170
+      ],
+      "color": "#FFFFFFFF",
+      "flags": {}
+    },
+    {
+      "id": 1023,
+      "title": "3 GENERATE VIEWS (4DANYONE)",
+      "bounding": [
+        1150,
+        -40,
+        900,
+        1120
+      ],
+      "color": "#7341FFFF",
+      "flags": {}
+    },
+    {
+      "id": 1023,
+      "title": "4 FRAMESET + TRAINING (SPLATTING)",
+      "bounding": [
+        2070,
+        -40,
+        460,
+        880
+      ],
+      "color": "#B06634FF",
+      "flags": {}
+    },
+    {
+      "id": 1023,
+      "title": "5 VIEW + EXPORT",
+      "bounding": [
+        2550,
+        -40,
+        1040,
+        1080
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.48098871014667405,
+      "offset": [
+        -1710.0148462256802,
+        504.71737936861393
+      ]
+    },
+    "frontendVersion": "1.52.7",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
