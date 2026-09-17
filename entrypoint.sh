@@ -100,4 +100,4 @@ fi
 echo "[comfy] Demarrage sur le port $PORT ..."
 cd "$COMFY_ROOT"
 source /opt/venv/bin/activate
-exec python main.py --listen 0.0.0.0 --port "$PORT" ${COMFY_EXTRA_ARGS:-}
+exec python main.py --listen 0.0.0.0 --port "$PORT" --enable-cors-header "*" ${COMFY_EXTRA_ARGS:-}
