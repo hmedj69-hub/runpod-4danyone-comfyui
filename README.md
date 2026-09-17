@@ -1,5 +1,5 @@
 [README.md](https://github.com/user-attachments/files/32326868/README.md)
-# ComfyUI + SplatKit (4DAnyone) — template RunPod
+# ComfyUI + SplatKit (4DAnyone) - template RunPod
 
 Ready-to-use Docker image turning amonocular video into a 4D Gaussian
 Splatting sequence, on RunPod.
@@ -40,14 +40,14 @@ Open the **Workflows** sidebar and click the workflow.
 
 | Card | 16 views / 121 frames |
 |---|---|
-| RTX 4090 (24 GB) | ❌ **fails** — `OutOfMemoryError`, even with `low_vram=true` and SageAttention (3 attempts) |
+| RTX 4090 (24 GB) | ❌ **fails** - `OutOfMemoryError`, even with `low_vram=true` and SageAttention (3 attempts) |
 | RTX 5090 (32 GB) | ✅ works |
 
 Upstream reports a ~25 GB peak and still lists *"Low-memory inference
 (<32 GB)"* as an unchecked TODO. **24 GB is not headroom, it's a wall.**
 
 Other plausible but **untested** cards: RTX 6000 Ada (48 GB), L40S (48 GB),
-A40 / A6000 (48 GB, Ampere — cheaper but slower).
+A40 / A6000 (48 GB, Ampere - cheaper but slower).
 
 > ⏱️ **Missing number**: generation time **without the Turbo LoRA** has not
 > been measured. Turbo cuts denoising to 4 steps; without it, expect
@@ -55,22 +55,22 @@ A40 / A6000 (48 GB, Ampere — cheaper but slower).
 
 ## First boot
 
-1. SSH and JupyterLab (relaunched — our `ENTRYPOINT` replaces RunPod's)
+1. SSH and JupyterLab (relaunched - our `ENTRYPOINT` replaces RunPod's)
 2. Symlinks `models`, `output`, `input`, `user` to `/workspace` (persistent)
-3. **Model download** (~20 GB, 10–20 min) — once only, guarded by a marker
+3. **Model download** (~20 GB, 10–20 min) - once only, guarded by a marker
 4. Real CUDA smoke test, then backend manifest
 5. ComfyUI on port 8188
 
 The smoke test is not decorative: if CUDA fails, the manifest records
 `cuda_smoke_test: false` and the 4DAnyone nodes **refuse to start**. That is
-deliberate — a clear refusal beats a crash at 8% after ten minutes.
+deliberate - a clear refusal beats a crash at 8% after ten minutes.
 
 ### Environment variables
 
 | Variable | Default | Purpose |
 |---|---|---|
 | `COMFY_PORT` | `8188` | ComfyUI listening port |
-| `JUPYTER_PASSWORD` | empty | **Jupyter token — empty means no authentication** |
+| `JUPYTER_PASSWORD` | empty | **Jupyter token - empty means no authentication** |
 | `SKIP_MODEL_DOWNLOAD` | `0` | `1` if models are already present |
 | `COMFY_EXTRA_ARGS` | empty | extra ComfyUI arguments |
 
@@ -101,7 +101,7 @@ gsplat 1.4.0 is validated on Blackwell (RTX 5090).
 ### No SMPL-X
 
 The 4DAnyone vendored inside SplatKit uses **SAM 3D Body** instead of
-GVHMR/SMPL-X — there is no `import smplx` anywhere. The Max-Planck academic
+GVHMR/SMPL-X - there is no `import smplx` anywhere. The Max-Planck academic
 licence, which forbids redistribution, **does not apply**.
 
 ## Licensing
@@ -129,7 +129,7 @@ no separate adapter license, and this repository grants no additional rights"*.
 
 **NC** = non-commercial. **SA** = share-alike.
 
-For commercial work — music videos, client jobs, monetised content — set the
+For commercial work - music videos, client jobs, monetised content - set the
 **4DAnyone Model Loader** node to:
 
 ```
@@ -143,12 +143,12 @@ never buys off a usage restriction.
 ### Attribution
 
 - **VGG-19**: Oxford Visual Geometry Group, MatConvNet distribution (CC BY 4.0)
-- **SAM 3D Body**: Meta — the SAM License carries usage restrictions (trade
+- **SAM 3D Body**: Meta - the SAM License carries usage restrictions (trade
   controls, weapons-related prohibitions) and its text must travel with any
   redistribution
 
 These belong to **software distribution**, not to your renders: your video
-credits owe nothing — VGG-19 is a computation tool and does not appear in the
+credits owe nothing - VGG-19 is a computation tool and does not appear in the
 output.
 
 ### ⚠️ Likeness rights
@@ -168,9 +168,9 @@ purpose, the exploitation period and what happens to the model afterwards.
 
 ## Credits
 
-- [4DAnyone](https://github.com/ant-research/4DAnyone) — Ant Research,
+- [4DAnyone](https://github.com/ant-research/4DAnyone) - Ant Research,
   Zhejiang University, Robbyant, HKUST
-- [ComfyUI-SplatKit](https://github.com/mickmumpitz/ComfyUI-SplatKit) — mickmumpitz
+- [ComfyUI-SplatKit](https://github.com/mickmumpitz/ComfyUI-SplatKit) - mickmumpitz
 - [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
-- [gsplat](https://github.com/nerfstudio-project/gsplat) — Nerfstudio
-- [SAM 3D Body](https://github.com/facebookresearch/sam-3d-body) — Meta
+- [gsplat](https://github.com/nerfstudio-project/gsplat) - Nerfstudio
+- [SAM 3D Body](https://github.com/facebookresearch/sam-3d-body) - Meta
