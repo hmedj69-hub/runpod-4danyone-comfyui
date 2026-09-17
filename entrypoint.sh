@@ -3,11 +3,11 @@
 #  Entrypoint - premier demarrage et demarrages suivants.
 #
 #  Ordre volontaire :
-#    1. liens vers /workspace (volume persistant)
-#    2. modeles  -> AVANT ComfyUI, sinon les menus des nodes sont vides
-#       et le workflow se charge avec des champs blancs
-#    3. smoke test CUDA + manifeste (necessite un GPU, donc pas au build)
-#    4. ComfyUI
+#    1. SSH et Jupyter (remplaces par notre ENTRYPOINT, donc a relancer)
+#    2. liens vers /workspace (volume persistant)
+#    3. modeles -> AVANT ComfyUI, sinon les menus des nodes sont vides
+#    4. smoke test CUDA + manifeste (necessite un GPU, donc pas au build)
+#    5. ComfyUI
 # =============================================================================
 set -euo pipefail
 
@@ -22,12 +22,30 @@ echo "=================================================================="
 echo "  ComfyUI + SplatKit (4DAnyone)"
 echo "=================================================================="
 
-# Activation SSH RunPod
+# --- Activation SSH RunPod --------------------------------------------------
 if [ -n "${PUBLIC_KEY:-}" ]; then
     mkdir -p /root/.ssh
     echo "$PUBLIC_KEY" >> /root/.ssh/authorized_keys
     chmod 700 /root/.ssh && chmod 600 /root/.ssh/authorized_keys
     service ssh start || true
+fi
+
+# --- Jupyter (port 8888) ----------------------------------------------------
+# L image de base RunPod lance JupyterLab via son propre script de demarrage,
+# que notre ENTRYPOINT remplace. On le relance donc nous-memes, sinon le port
+# 8888 reste indefiniment en "Initializing" cote RunPod - et l utilisateur n a
+# aucun moyen simple de recuperer ses archives PLY.
+if command -v jupyter >/dev/null 2>&1; then
+    echo "[jupyter] Demarrage sur le port 8888 ..."
+    nohup jupyter lab \
+        --allow-root --no-browser --ip=0.0.0.0 --port=8888 \
+        --ServerApp.token="${JUPYTER_PASSWORD:-}" \
+        --ServerApp.allow_origin="*" \
+        --ServerApp.preferred_dir="$WS" \
+        --FileContentsManager.delete_to_trash=False \
+        > /tmp/jupyter.log 2>&1 &
+else
+    echo "[jupyter] jupyter introuvable - port 8888 inactif."
 fi
 
 # --- 1. persistance ---------------------------------------------------------
