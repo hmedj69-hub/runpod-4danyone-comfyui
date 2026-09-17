@@ -22,6 +22,14 @@ echo "=================================================================="
 echo "  ComfyUI + SplatKit (4DAnyone)"
 echo "=================================================================="
 
+# Activation SSH RunPod
+if [ -n "${PUBLIC_KEY:-}" ]; then
+    mkdir -p /root/.ssh
+    echo "$PUBLIC_KEY" >> /root/.ssh/authorized_keys
+    chmod 700 /root/.ssh && chmod 600 /root/.ssh/authorized_keys
+    service ssh start || true
+fi
+
 # --- 1. persistance ---------------------------------------------------------
 mkdir -p "$WS/models" "$WS/output" "$WS/input" "$WS/user"
 for d in models output input user; do
